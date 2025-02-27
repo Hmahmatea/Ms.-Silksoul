@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You Ms. silksoul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #C3B1E1, #FFD3F8);
+            font-size: 16px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .button {
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            transition: all 0.3s ease;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .yes {
+            background-color: #32CD32;
+        }
+
+        .no {
+            background-color: #FF6347;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        .emoji {
+            font-size: 24px;
+        }
+
+        .container p {
+            font-size: 13px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        /* Confetti styles */
+        .emoji-shower {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: shower 3s infinite;
+        }
+
+        @keyframes shower {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1>Will you be my Valentine Ms silksoul? 💖</h1>
+        <button class="button yes" onclick="nextPage('yes')">Yes 💚</button>
+        <button class="button no" onclick="nextPage('no')">No 😢</button>
+    </div>
+
+    <script>
+        let questions = [
+            "Will you be my Valentine Ms silksoul? 💖",
+            "Are you sure??",
+            "Think again..... Remi 😅 Yes a ni dawn em?",
+            "This is a serious decision! Don't rush 😳",
+            "Are you really sure about this? 🧐",
+            "Btw, I miss you lol!! It's okay, take your time... ⏳",
+            "Make sure Nu Lapuii's okay with this! 😱",
+            "But I can't take this rejection... 😭",
+            "You know, I might cry if you say no Remsiammmmm 😢",
+            "This is your last chance❗❗❗ If 'yes' I'm gonna be your burden for so long.... So...???"
+        ];
+
+        let finalMessage = "Tadaaaaa!!! I'm so glad you accepted, I'll try to be your best Valentine ever! 💖";
+
+        let questionIndex = 0;
+
+        // If there's a URL parameter, get it to determine the question number
+        const urlParams = new URLSearchParams(window.location.search);
+        questionIndex = parseInt(urlParams.get('q')) || 0; // Default to question 0
+
+        // If the question index is larger than the number of questions, show the final message
+        if (questionIndex >= questions.length) {
+            document.getElementById('container').innerHTML = `
+                <h1>${finalMessage}</h1>
+                <div class="emoji-shower">
+                    <span class="emoji">🎉</span>
+                    <span class="emoji">💖</span>
+                    <span class="emoji">🎊</span>
+                    <span class="emoji">🥳</span>
+                    <span class="emoji">💫</span>
+                    <span class="emoji">🎉</span>
+                    <span class="emoji">💖</span>
+                    <span class="emoji">🥰</span>
+                    <span class="emoji">🌟</span>
+                    <span class="emoji">🎈</span>
+                    <span class="emoji">❤️</span>
+                    <span class="emoji">💫</span>
+                    <span class="emoji">🌈</span>
+                    <span class="emoji">✨</span>
+                    <span class="emoji">🌟</span>
+                    <span class="emoji">🥳</span>
+                    <span class="emoji">🎉</span>
+                    <span class="emoji">🎊</span>
+                    <span class="emoji">💫</span>
+                    <span class="emoji">💖</span>
+                </div>
+            `;
+        } else {
+            // Display the current question with the correct options
+            let questionText = questions[questionIndex];
+            let yesText = '';
+            let noText = '';
+            
+            switch (questionIndex) {
+                case 0:
+                    yesText = 'Yes 💚';
+                    noText = 'No 😢';
+                    break;
+                case 1:
+                    yesText = 'Ofc 😊';
+                    noText = 'IDK 🤔';
+                    break;
+                case 2:
+                    yesText = 'Ni dawn 😆';
+                    noText = 'Aihhhh 😨';
+                    break;
+                case 3:
+                    yesText = 'I’m ready 😎';
+                    noText = 'I need time 😳';
+                    break;
+                case 4:
+                    yesText = '100% 😍';
+                    noText = 'I’m nervous now 😬';
+                    break;
+                case 5:
+                    yesText = 'Okii 😊';
+                    noText = 'Nahh 😕';
+                    break;
+                case 6:
+                    yesText = 'A phal vek 👍';
+                    noText = 'A phal lo ❌';
+                    break;
+                case 7:
+                    yesText = 'Of course 😘';
+                    noText = 'Not sure 😅';
+                    break;
+                case 8:
+                    yesText = 'Yes!!! 💖';
+                    noText = 'Please no 🥲';
+                    break;
+                case 9:
+                    yesText = 'Lets do this 💪';
+                    noText = 'No option awm tawh lo 😩';
+                    break;
+            }
+            
+            document.getElementById('container').innerHTML = `
+                <h1>${questionText}</h1>
+                <button class="button yes" onclick="nextPage('yes')">${yesText}</button>
+                <button class="button no" onclick="nextPage('no')">${noText}</button>
+            `;
+        }
+
+        // Function to redirect to the next page (with the next question number in the URL)
+        function nextPage(answer) {
+            questionIndex++;
+            let nextPageUrl = `?q=${questionIndex}`;
+            // If the user selects an option, it goes to the next page (next question or final message)
+            window.location.href = nextPageUrl;
+        }
+    </script>
+</body>
+</html>
